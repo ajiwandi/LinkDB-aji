@@ -43,8 +43,8 @@
 
             <!-- Text -->
             <p class="font-size-md text-white">
-              Enrich companies with funding, categories, emails, exits/acquisitions data 
-              <a class="text-warning font-weight-bold ml-2" href="https://nubela.co/blog/enrich-companies-with-funding-categories-emails-exits-acquisitions-data" target="_blank">
+              Search employees with Employee Listing API
+              <a class="text-warning font-weight-bold ml-2" href="#" target="_blank">
                 Learn more <i class="neu-arrow"></i> 
               </a>
             </p>
@@ -573,8 +573,202 @@
       
     </section>
 
+    <!-- 4TH FOLD
+    ================================================== -->
+    <section class="bg-white py-8 py-md-12 border-bottom">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Heading -->
+            <h1 class="font-weight-bold mb-9">
+              Perform these queries with LinkDB
+            </h1>
+
+          </div>
+        </div> <!-- / .row -->
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-6 text-center">
+
+              <!-- Icon -->
+              <div class="icon text-primary">
+                <i class="neu-all-out" style="font-size: 40px;"></i>
+              </div>            
+  
+              <!-- Heading -->
+              <h3 class="mb-4">
+                "Find me all software engineers in San Francisco"
+              </h3>
+  
+              <div class="highlight-block mb-9">
+              
+                <!-- Controls -->
+                <div class="d-flex">
+                  <span class="bg-danger rounded-circle" style="width: 10px; height: 10px;"></span>
+                  <span class="bg-warning rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                  <span class="bg-success rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                </div>              
+  
+                <pre class="text-left">
+                  <code class="language-python">
+  
+SELECT
+    id,
+    parsed_data->>'first_name' AS first_name,
+    parsed_data->'last_name' AS last_name,
+    jsonb_path_query_first(parsed_data, '$.experiences[*] ? (@.ends_at == null && @.company == "Electronic Arts (EA)").title') AS title
+FROM profile
+WHERE to_tsvector('simple', parsed_data) @@ plainto_tsquery('simple', 'Electronic Arts (EA)') -- general full text search
+  AND parsed_data @> '{"experiences": [{"ends_at": null, "company": "Electronic Arts (EA)"}]}' -- confirm
+              
+                  </code>
+                </pre>
+
+              </div>
+
+            </div>
+
+        </div> <!-- / .row -->        
+        
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-6 text-center">
+
+              <!-- Icon -->
+              <div class="icon text-primary">
+                <i class="neu-groups" style="font-size: 40px;"></i>
+              </div>            
+  
+              <!-- Heading -->
+              <h3 class="mb-4">
+                "Find me all employees working in Apple"
+              </h3>
+  
+              <div class="highlight-block mb-9">
+              
+                <!-- Controls -->
+                <div class="d-flex">
+                  <span class="bg-danger rounded-circle" style="width: 10px; height: 10px;"></span>
+                  <span class="bg-warning rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                  <span class="bg-success rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                </div>              
+  
+                <pre class="text-left">
+                  <code class="language-python">
+  
+SELECT
+    id,
+    parsed_data->>'first_name' AS first_name,
+    parsed_data->'last_name' AS last_name,
+    jsonb_path_query_first(parsed_data, '$.experiences[*] ? (@.ends_at == null && @.company == "Electronic Arts (EA)").title') AS title
+FROM profile
+WHERE to_tsvector('simple', parsed_data) @@ plainto_tsquery('simple', 'Electronic Arts (EA)') -- general full text search
+  AND parsed_data @> '{"experiences": [{"ends_at": null, "company": "Electronic Arts (EA)"}]}' -- confirm
+              
+                  </code>
+                </pre>
+
+              </div>
+
+            </div>
+
+        </div> <!-- / .row -->
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-6 text-center">
+
+              <!-- Icon -->
+              <div class="icon text-primary">
+                <i class="neu-mathematical-anchor" style="font-size: 40px;"></i>
+              </div>            
+  
+              <!-- Heading -->
+              <h3 class="mb-4">
+                "Find me everyone who studied Computer Science in Stanford"
+              </h3>
+  
+              <div class="highlight-block mb-9">
+              
+                <!-- Controls -->
+                <div class="d-flex">
+                  <span class="bg-danger rounded-circle" style="width: 10px; height: 10px;"></span>
+                  <span class="bg-warning rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                  <span class="bg-success rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                </div>              
+  
+                <pre class="text-left">
+                  <code class="language-python">
+  
+SELECT
+    id,
+    parsed_data->>'first_name' AS first_name,
+    parsed_data->'last_name' AS last_name,
+    jsonb_path_query_first(parsed_data, '$.experiences[*] ? (@.ends_at == null && @.company == "Electronic Arts (EA)").title') AS title
+FROM profile
+WHERE to_tsvector('simple', parsed_data) @@ plainto_tsquery('simple', 'Electronic Arts (EA)') -- general full text search
+  AND parsed_data @> '{"experiences": [{"ends_at": null, "company": "Electronic Arts (EA)"}]}' -- confirm
+              
+                  </code>
+                </pre>
+
+              </div>
+
+            </div>
+
+        </div> <!-- / .row --> 
+        
+        <div class="row justify-content-center">
+
+          <div class="col-12 col-md-6 text-center">
+
+            <!-- Icon -->
+            <div class="icon text-primary">
+              <i class="neu-achievement" style="font-size: 40px;"></i>
+            </div>            
+
+            <!-- Heading -->
+            <h3 class="mb-4">
+              "Employees of a company by name (Example: Electronic Arts)"
+            </h3>
+
+            <div class="highlight-block mb-5">
+            
+              <!-- Controls -->
+              <div class="d-flex">
+                <span class="bg-danger rounded-circle" style="width: 10px; height: 10px;"></span>
+                <span class="bg-warning rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+                <span class="bg-success rounded-circle ml-1" style="width: 10px; height: 10px;"></span>
+              </div>              
+
+              <pre class="text-left">
+                <code class="language-python">
+
+SELECT
+  id,
+  parsed_data->>'first_name' AS first_name,
+  parsed_data->'last_name' AS last_name,
+  jsonb_path_query_first(parsed_data, '$.experiences[*] ? (@.ends_at == null && @.company == "Electronic Arts (EA)").title') AS title
+FROM profile
+WHERE to_tsvector('simple', parsed_data) @@ plainto_tsquery('simple', 'Electronic Arts (EA)') -- general full text search
+AND parsed_data @> '{"experiences": [{"ends_at": null, "company": "Electronic Arts (EA)"}]}' -- confirm
+            
+                </code>
+              </pre>
+
+            </div>
+
+          </div>
+
+      </div> <!-- / .row -->         
+
+      </div> <!-- / .container -->
+    </section>     
+
     <!-- FAQ-->
-    <section class="pb-8 pb-md-12 pt-8 pt-md-10 bg-white border-bottom">
+    <section class="pb-8 pb-md-12 pt-8 pt-md-10 bg-light border-bottom">
       <div class="container ">
         <div class="row justify-content-center">
           <div class="col-12 col-md-10 col-lg-8 text-center">
@@ -709,20 +903,20 @@
 
             <!-- Heading -->
             <h3 class="font-weight-bold text-white mb-1">
-              Access to LinkDB is free
+              Contact us for sales
             </h3>
 
             <!-- Text -->
             <p class="font-size-lg text-muted mb-5 mb-md-0">
-              Get your connection string in the dashboard now
+              We will respond within 1 business day
             </p>
 
           </div>
           <div class="col-12 col-md-auto">
 
             <!-- Button -->
-            <a href="#!" class="btn btn-primary lift">
-              Get LinkDB Connection String
+            <a href="mailto:hello@nubela.co" class="btn btn-primary lift">
+              Email us
             </a>
 
           </div>
